@@ -1,0 +1,13 @@
+---
+- name: "Creating directories"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ bitcoin_user_name }}"
+    group: "{{ bitcoin_user_name }}"
+    mode: 0755
+    recurse: yes
+  loop:
+    - "{{ bitcoin_service_dir }}"
+    - "{{ bitcoin_home }}/bin"
+    - "{{ bitcoin_home }}/.bitcoin"

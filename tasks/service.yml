@@ -1,0 +1,41 @@
+---
+- name: "Enabling linger for {{ bitcoin_user_name }}"
+  command: "loginctl enable-linger {{ bitcoin_user_name }}"
+
+- name: "Finding uid of {{ bitcoin_user_name }}"
+  command: "id -u {{ bitcoin_user_name }}"
+  register: the_user_uid
+  check_mode: no
+  changed_when: false
+  become: true
+  become_user: "{{ bitcoin_user_name }}"
+
+- name: "Determining XDG_RUNTIME_DIR"
+  set_fact:
+    xdg_runtime_dir: "/run/user/{{ the_user_uid.stdout }}"
+  changed_when: false
+  become: true
+  become_user: "{{ bitcoin_user_name }}"
+
+- name: "Updating bashrc for {{ bitcoin_user_name }}"
+  lineinfile:
+    path: "/home/{{ bitcoin_user_name }}/.bashrc"
+    line: "export XDG_RUNTIME_DIR=/run/user/{{ the_user_uid.stdout }}"
+  
+- name: "Creating {{ bitcoin_sevice_name }} systemd service"
+  template:
+    src: bitcoin.service.j2
+    dest: "{{ bitcoin_service_dir }}/{{ bitcoin_sevice_name }}.service"
+    mode: 0644
+
+- name: "Applying {{ bitcoin_sevice_name }} Service Parameters"
+  become: true
+  become_user: "{{ bitcoin_user_name }}"
+  environment:
+    XDG_RUNTIME_DIR: "{{ xdg_runtime_dir }}"
+  systemd:
+    scope: user
+    daemon_reload: yes
+    name: "{{ bitcoin_sevice_name }}.service"
+    enabled: "{{ bitcoin_service_enabled }}"
+    state: "{{ bitcoin_service_state }}"

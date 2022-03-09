@@ -1,0 +1,17 @@
+---
+bitcoin_user_name: bitcoin
+bitcoin_sevice_name: bitcoin
+bitcoin_home: "/home/{{ bitcoin_user_name }}"
+bitcoin_service_dir: "/home/{{ bitcoin_user_name }}/.config/systemd/user/"
+bitcoin_ip_host: '127.0.0.1'
+bitcoin_repo: "https://github.com/bitcoin/bitcoin.git"
+libdb_version: "4.8.30"
+libdb_url: "http://download.oracle.com/berkeley-db/db-{{ libdb_version }}.zip"
+bitcoin_branch: master
+bitcoin_rpcuser: username
+bitcoin_rpcpassword: password
+bitcoin_rpcbind: "127.0.0.1"
+bitcoin_rpcport: 8832
+bitcoin_port: 8833
+bitcoin_service_enabled: 'No' # yes
+bitcoin_service_state: 'stopped' # started

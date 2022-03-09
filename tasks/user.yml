@@ -1,0 +1,9 @@
+---
+- name: "Creating {{ bitcoin_user_name }} user"
+  user:
+    name: "{{ bitcoin_user_name }}"
+    createhome: yes
+    home: "/home/{{ bitcoin_user_name }}"
+    shell: /bin/bash
+    system: yes
+

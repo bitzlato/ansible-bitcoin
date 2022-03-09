@@ -1,0 +1,6 @@
+---
+- import_tasks: user.yml
+- import_tasks: directories.yml
+- import_tasks: dependencies.yml
+- import_tasks: bitcoin.yml
+- import_tasks: service.yml
