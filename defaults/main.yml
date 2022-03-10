@@ -3,7 +3,6 @@ bitcoin_user_name: bitcoin
 bitcoin_sevice_name: bitcoin
 bitcoin_home: "/home/{{ bitcoin_user_name }}"
 bitcoin_service_dir: "/home/{{ bitcoin_user_name }}/.config/systemd/user/"
-bitcoin_ip_host: '127.0.0.1'
 bitcoin_repo: "https://github.com/bitcoin/bitcoin.git"
 libdb_version: "4.8.30"
 libdb_url: "http://download.oracle.com/berkeley-db/db-{{ libdb_version }}.zip"

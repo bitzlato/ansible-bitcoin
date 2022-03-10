@@ -6,6 +6,7 @@ After=network.target
 Environment="LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib"
 ExecStart={{ bitcoin_home }}/bitcoin/src/bitcoind
 Restart=on-failure
+Type=forking
 
 # Specifies which signal to use when killing a service. Defaults to SIGTERM.
 # SIGHUP gives parity time to exit cleanly before SIGKILL (default 90s)
