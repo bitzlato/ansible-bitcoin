@@ -7,3 +7,8 @@
     shell: /bin/bash
     system: yes
 
+- name: "Ensure {{ bitcoin_user_name }} user is part of systemd-journal group"
+  user:
+    name: "{{ bitcoin_user_name }}"
+    groups: systemd-journal
+    append: true

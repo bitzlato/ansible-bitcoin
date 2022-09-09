@@ -14,3 +14,5 @@ bitcoin_rpcport: 8832
 bitcoin_port: 8833
 bitcoin_service_enabled: 'No' # yes
 bitcoin_service_state: 'stopped' # started
+bitcoin_additional_parameter: |
+  rpcallowip=127.0.0.1
